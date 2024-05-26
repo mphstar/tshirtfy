@@ -12,7 +12,7 @@ const Landing = () => {
 
     useEffect(() => {
         store.setPage("home");
-        
+
         return () => {};
     }, []);
 
@@ -28,14 +28,22 @@ const Landing = () => {
                 showStatus={false}
                 emulateTouch
             >
-                <div>
+                <div
+                    data-aos="fade-up"
+                    data-aos-delay="0"
+                    data-aos-duration="1000"
+                >
                     <img
                         className="max-h-screen object-cover"
                         src="/assets/images/hero.png"
                         alt="hero"
                     />
                 </div>
-                <div>
+                <div
+                    data-aos="fade-up"
+                    data-aos-delay="0"
+                    data-aos-duration="1000"
+                >
                     <img
                         className="max-h-screen object-cover"
                         src="/assets/images/hero1.png"
@@ -91,8 +99,13 @@ const Landing = () => {
                 />
             </div>
 
-            <div className="container max-w-[1000px] mx-auto px-4 mt-2 flex flex-col">
-                <p className="text-xl font-semibold py-3 text-center">
+            <div className="container max-w-[1000px] mx-auto px-4 mt-2 overflow-hidden flex flex-col">
+                <p
+                    data-aos="fade-left"
+                    data-aos-delay="0"
+                    data-aos-duration="1000"
+                    className="text-xl font-semibold py-3 text-center"
+                >
                     Best Seller Product
                 </p>
 
@@ -128,30 +141,51 @@ const Landing = () => {
                 </div>
             </div>
 
-            <div className="flex flex-col md:flex-row w-full mt-8 justify-center items-center md:items-end conteiner px-4 mx-auto gap-3">
+            <div className="flex flex-col md:flex-row w-full mt-8 justify-center items-center md:items-end conteiner px-4 mx-auto gap-3 overflow-hidden">
                 <div className="flex flex-col">
-                    <p className="text-3xl text-center md:text-start font-semibold">
+                    <p
+                        data-aos="fade-up"
+                        data-aos-delay="0"
+                        data-aos-duration="1000"
+                        className="text-3xl text-center md:text-start font-semibold"
+                    >
                         New BATCH
                     </p>
-                    <p className="text-3xl text-center md:text-start font-semibold">
+                    <p
+                        data-aos="fade-up"
+                        data-aos-delay="100"
+                        data-aos-duration="1000"
+                        className="text-3xl text-center md:text-start font-semibold"
+                    >
                         Product
                     </p>
-                    <p className="text-orange-500 text-center md:text-start text-5xl font-bold">
+                    <p
+                        data-aos="fade-up"
+                        data-aos-delay="200"
+                        data-aos-duration="1000"
+                        className="text-orange-500 text-center md:text-start text-5xl font-bold"
+                    >
                         BEST SELLER
                     </p>
                 </div>
                 <div className="relative w-fit">
                     <img
-                        className="w-[50px] hidden md:flex  md:w-[200px] absolute -left-10 top-16"
+                        data-aos="zoom-in"
+                        data-aos-duration="1000"
+                        className="w-[50px] hidden md:flex  md:w-[200px] absolute z-[2] -left-10 top-16"
                         src="/assets/images/hero2.png"
                         alt="hero 2"
                     />
                     <img
-                        className="w-[50px] hidden md:flex  md:w-[200px] absolute -right-10 top-32"
+                        data-aos="zoom-in"
+                        data-aos-duration="1000"
+                        className="w-[50px] hidden md:flex  md:w-[200px] absolute z-[2] -right-10 top-32"
                         src="/assets/images/hero2.png"
                         alt="hero 2"
                     />
                     <img
+                        data-aos="zoom-in"
+                        data-aos-duration="1000"
                         className="w-full  md:w-[400px]"
                         src="/assets/images/hero2.png"
                         alt="hero 2"
@@ -159,8 +193,13 @@ const Landing = () => {
                 </div>
             </div>
 
-            <div className="container max-w-[1000px] mx-auto px-4 mt-6 flex flex-col mb-6">
-                <p className="text-xl font-semibold py-3 text-center">
+            <div className="container max-w-[1000px] mx-auto px-4 mt-6 flex overflow-hidden flex-col mb-6">
+                <p
+                    data-aos="fade-left"
+                    data-aos-delay="0"
+                    data-aos-duration="1000"
+                    className="text-xl font-semibold py-3 text-center"
+                >
                     PRODUCT PROMO OF WEEK
                 </p>
 
@@ -234,8 +273,6 @@ const Landing = () => {
                         }}
                     />
                 </div>
-
-                
             </div>
         </HomeLayout>
     );
@@ -243,7 +280,13 @@ const Landing = () => {
 
 const CardCategory = ({ category }) => {
     return (
-        <div className="flex flex-col items-center w-full px-4">
+        <div
+            data-aos="zoom-in"
+            data-aos-delay="0"
+            data-aos-duration="1000"
+            data-aos-offset="20"
+            className="flex flex-col items-center w-full px-4"
+        >
             <img
                 className="w-full h-[200px] object-cover"
                 src={category.image}
@@ -256,7 +299,12 @@ const CardCategory = ({ category }) => {
 
 const CardBestSeller = ({ product }) => {
     return (
-        <div className="flex flex-col items-center">
+        <div
+            data-aos="zoom-in"
+            data-aos-delay="0"
+            data-aos-duration="1000"
+            className="flex flex-col items-center"
+        >
             <img
                 className="w-full h-[200px] object-cover"
                 src={product.image}
