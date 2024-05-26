@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\BooksController;
+use App\Http\Controllers\LandingController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -15,4 +15,6 @@ use Inertia\Inertia;
 |
 */
 
-Route::get('/', [BooksController::class, 'index']);
+// Route::get('/', [BooksController::class, 'index']);
+
+Route::get('/', [LandingController::class, 'index']);
