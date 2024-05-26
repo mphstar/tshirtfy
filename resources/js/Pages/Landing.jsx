@@ -1,11 +1,20 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import Footer from "../Components/Footer";
 import HomeLayout from "../Layouts/HomeLayout";
+import useHomeStore from "../Store/HomeStore";
 
 const Landing = () => {
     const [selectedTab, setSelectedTab] = useState("jacket");
+
+    const store = useHomeStore();
+
+    useEffect(() => {
+        store.setPage("home");
+        
+        return () => {};
+    }, []);
 
     return (
         <HomeLayout>

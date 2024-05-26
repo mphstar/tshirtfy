@@ -1,9 +1,13 @@
+import { Link } from "@inertiajs/react";
 import React, { useState } from "react";
 import { IoIosClose } from "react-icons/io";
 import { RxHamburgerMenu } from "react-icons/rx";
+import useHomeStore from "../Store/HomeStore";
 
 const Header = () => {
     const [showNavbar, setShowNavbar] = useState(false);
+
+    const store = useHomeStore();
 
     return (
         <div className="sticky top-0 z-10 bg-[#D9D9D9] flex w-full items-center">
@@ -22,50 +26,70 @@ const Header = () => {
                         } md:translate-y-0 md:backdrop-blur-none duration-300 ease-in-out w-[100dvw] md:w-fit md:h-fit justify-center flex left-0 top-0 px-6 py-8 items-center h-[100dvh] md:flex`}
                     >
                         <IoIosClose
-                        onClick={() => setShowNavbar(false)}
+                            onClick={() => setShowNavbar(false)}
                             size={32}
                             className="absolute top-5 right-5 md:hidden"
                         />
                         <ul className="flex flex-col justify-center items-center md:flex-row gap-6">
                             <li>
-                                <a
-                                    href="#"
-                                    className="text-gray-600 pb-2 border-b-4 border-b-red-500 hover:text-gray-800"
+                                <Link
+                                    href="/"
+                                    className={`text-gray-600 pb-2 ${
+                                        store.page == "home"
+                                            ? "border-b-4 border-b-red-500"
+                                            : ""
+                                    } hover:text-gray-800`}
                                 >
-                                    Home
-                                </a>
+                                    HOME
+                                </Link>
                             </li>
                             <li>
-                                <a
-                                    href="#"
-                                    className="text-gray-600 pb-2 hover:text-gray-800"
+                                <Link
+                                    href="/product"
+                                    className={`text-gray-600 pb-2 ${
+                                        store.page == "product"
+                                            ? "border-b-4 border-b-red-500"
+                                            : ""
+                                    } hover:text-gray-800`}
                                 >
-                                    Product
-                                </a>
+                                    PRODUCT
+                                </Link>
                             </li>
                             <li>
-                                <a
-                                    href="#"
-                                    className="text-gray-600 pb-2 hover:text-gray-800"
+                                <Link
+                                    href="/artikel"
+                                    className={`text-gray-600 pb-2 ${
+                                        store.page == "artikel"
+                                            ? "border-b-4 border-b-red-500"
+                                            : ""
+                                    } hover:text-gray-800`}
                                 >
-                                    Artikel
-                                </a>
+                                    ARTIKEL
+                                </Link>
                             </li>
                             <li>
-                                <a
-                                    href="#"
-                                    className="text-gray-600 pb-2 hover:text-gray-800"
+                                <Link
+                                    href="/store"
+                                    className={`text-gray-600 pb-2 ${
+                                        store.page == "store"
+                                            ? "border-b-4 border-b-red-500"
+                                            : ""
+                                    } hover:text-gray-800`}
                                 >
-                                    Store
-                                </a>
+                                    STORE
+                                </Link>
                             </li>
                             <li>
-                                <a
-                                    href="#"
-                                    className="text-gray-600 pb-2 hover:text-gray-800"
+                                <Link
+                                    href="/service"
+                                    className={`text-gray-600 pb-2 ${
+                                        store.page == "service"
+                                            ? "border-b-4 border-b-red-500"
+                                            : ""
+                                    } hover:text-gray-800`}
                                 >
-                                    Services
-                                </a>
+                                    SERVICES
+                                </Link>
                             </li>
                         </ul>
                     </div>
