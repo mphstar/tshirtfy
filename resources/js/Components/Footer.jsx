@@ -4,7 +4,7 @@ const Footer = () => {
     return (
         <div className="bg-slate-900 flex flex-col mt-4 pt-6 overflow-hidden">
             <div className="flex flex-col md:flex-row gap-3 container mx-auto max-w-[1000px] justify-center  px-6 text-white">
-                <div className="flex flex-col mt-3 w-full md:max-w-[200px]">
+                <div className="flex flex-col mt-3 w-full overflow-hidden md:max-w-[200px]">
                     <div
                         data-aos="fade-up"
                         data-aos-duration="1000"
@@ -13,11 +13,7 @@ const Footer = () => {
                         <p className="py-3 text-xl">ABOUT</p>
                         <div className="w-[60%] h-[4px] bg-white absolute bottom-0 left-0"></div>
                     </div>
-                    <p
-                        data-aos="fade-up"
-                        data-aos-duration="1000"
-                        data-aos-delay="150"
-                    >
+                    <p data-aos="fade-up" data-aos-duration="1000">
                         SCK.CO have been running in the circles of vein for
                         several years. Those cycles of journey have been an
                         amazing adventures. Besides brave thundering days, the
@@ -26,7 +22,7 @@ const Footer = () => {
                     </p>
                 </div>
 
-                <div className="flex flex-col mt-3 w-full md:max-w-[200px]">
+                <div className="flex overflow-hidden flex-col mt-3 w-full md:max-w-[200px]">
                     <div
                         data-aos="fade-up"
                         data-aos-duration="1000"
@@ -35,18 +31,14 @@ const Footer = () => {
                         <p className="py-3 text-xl">INFORMATION</p>
                         <div className="w-[60%] h-[4px] bg-white absolute bottom-0 left-0"></div>
                     </div>
-                    <ul
-                        data-aos="fade-up"
-                        data-aos-duration="1000"
-                        data-aos-delay="150"
-                    >
+                    <ul data-aos="fade-up" data-aos-duration="1000">
                         <li className="py-1 font-semibold">Home</li>
                         <li className="py-1 font-semibold">Privacy Policy</li>
                         <li className="py-1 font-semibold">Store Location</li>
                     </ul>
                 </div>
 
-                <div className="flex flex-col mt-3 w-full md:max-w-[200px]">
+                <div className="flex overflow-hidden flex-col mt-3 w-full md:max-w-[200px]">
                     <div
                         data-aos="fade-up"
                         data-aos-duration="1000"
@@ -55,11 +47,7 @@ const Footer = () => {
                         <p className="py-3 text-xl">ORDER</p>
                         <div className="w-[60%] h-[4px] bg-white absolute bottom-0 left-0"></div>
                     </div>
-                    <ul
-                        data-aos="fade-up"
-                        data-aos-duration="1000"
-                        data-aos-delay="150"
-                    >
+                    <ul data-aos="fade-up" data-aos-duration="1000">
                         <li className="py-1 font-semibold">How to Order</li>
                         <li className="py-1 font-semibold">Shipping</li>
                         <li className="py-1 font-semibold">Returns</li>
@@ -67,7 +55,7 @@ const Footer = () => {
                     </ul>
                 </div>
 
-                <div className="flex flex-col mt-3 w-full md:max-w-[200px]">
+                <div className="flex overflow-hidden flex-col mt-3 w-full md:max-w-[200px]">
                     <div
                         data-aos="fade-up"
                         data-aos-duration="1000"
@@ -79,7 +67,6 @@ const Footer = () => {
                     <div
                         data-aos="fade-up"
                         data-aos-duration="1000"
-                        data-aos-delay="150"
                         className="flex flex-col"
                     >
                         <h1 className="font-semibold">Online CS</h1>
@@ -91,7 +78,6 @@ const Footer = () => {
                     <div
                         data-aos="fade-up"
                         data-aos-duration="1000"
-                        data-aos-delay="150"
                         className="flex flex-col mt-3"
                     >
                         <h1 className="font-semibold">Admin CS</h1>
@@ -106,7 +92,6 @@ const Footer = () => {
             <span
                 data-aos="fade-up"
                 data-aos-duration="1000"
-                data-aos-delay="300"
                 className="text-gray-400 text-center pt-16 mb-8"
             >
                 Diprojectin@ | IT_solution 2024 webdev
