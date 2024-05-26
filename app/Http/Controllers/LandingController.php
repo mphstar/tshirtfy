@@ -11,4 +11,24 @@ class LandingController extends Controller
     {
         return Inertia::render('Landing', []);
     }
+
+    public function product()
+    {
+        return Inertia::render('Product', []);
+    }
+
+    public function artikel()
+    {
+        return Inertia::render('Artikel', []);
+    }
+
+    public function store()
+    {
+        return Inertia::render('Store', []);
+    }
+
+    public function service()
+    {
+        return Inertia::render('Service', []);
+    }
 }

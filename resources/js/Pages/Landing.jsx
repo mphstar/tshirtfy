@@ -235,10 +235,7 @@ const Landing = () => {
                     />
                 </div>
 
-                <div className="flex flex-col mt-32 mb-6">
-                    <img src="/assets/images/pembayaran.png" alt="pembayaran" />
-                    <img src="/assets/images/pengiriman.png" alt="pengiriman" />
-                </div>
+                
             </div>
         </HomeLayout>
     );
