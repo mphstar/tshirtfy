@@ -31,4 +31,9 @@ class LandingController extends Controller
     {
         return Inertia::render('Service', []);
     }
+    
+    public function login()
+    {
+        return Inertia::render('Login', []);
+    }
 }

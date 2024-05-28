@@ -97,12 +97,12 @@ const Header = () => {
                 <div>
                     <ul className="flex gap-6 items-center">
                         <li>
-                            <a
-                                href="#"
+                            <Link
+                                href="/login"
                                 className="text-gray-600 hover:text-gray-800"
                             >
                                 Login
-                            </a>
+                            </Link>
                         </li>
                         <RxHamburgerMenu
                             onClick={() => setShowNavbar(true)}

@@ -22,3 +22,4 @@ Route::get('/product', [LandingController::class, 'product']);
 Route::get('/artikel', [LandingController::class, 'artikel']);
 Route::get('/store', [LandingController::class, 'store']);
 Route::get('/service', [LandingController::class, 'service']);
+Route::get('/login', [LandingController::class, 'login']);
