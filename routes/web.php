@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\LandingController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -23,3 +24,7 @@ Route::get('/artikel', [LandingController::class, 'artikel']);
 Route::get('/store', [LandingController::class, 'store']);
 Route::get('/service', [LandingController::class, 'service']);
 Route::get('/login', [LandingController::class, 'login']);
+
+Route::prefix('admin')->group(function () {
+    Route::get('/', [AdminController::class, 'index']);
+});
