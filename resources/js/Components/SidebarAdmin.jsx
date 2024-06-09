@@ -36,7 +36,7 @@ const SidebarAdmin = () => {
                 {/* <div className="h-[71px]"></div> */}
                 <p className="text-gray-200 text-xs py-2 mb-3">Menu</p>
 
-                <Link href="/admin/category">
+                <Link href="/admin">
                     <div
                         className={`flex w-full items-center gap-4 py-4 md:py-2 px-3 ${
                             store.title == "Dashboard"
@@ -71,13 +71,13 @@ const SidebarAdmin = () => {
                         !menuDropdown ? "h-0" : "h-[220px]"
                     }`}
                 >
-                    <Link href="/admin/">
+                    <Link href="/admin/product">
                         <li className={`px-2 py-2 pl-12 text-[16px]`}>Men</li>
                     </Link>
-                    <Link href="/admin/">
+                    <Link href="/admin/product">
                         <li className={`px-2 py-2 pl-12 text-[16px]`}>Wiman</li>
                     </Link>
-                    <Link href="/admin/">
+                    <Link href="/admin/product">
                         <li className={`px-2 py-2 pl-12 text-[16px]`}>Unisex</li>
                     </Link>
                 </ul>

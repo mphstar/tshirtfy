@@ -1,8 +1,16 @@
-import React from "react";
+import React, { useEffect } from "react";
 import AdminLayout from "../../Layouts/AdminLayout";
 import { MdOutlineUploadFile } from "react-icons/md";
+import useAdminStore from "../../Store/AdminStore";
+import { Link } from "@inertiajs/react";
 
 const Home = () => {
+    const store = useAdminStore();
+
+    useEffect(() => {
+        store.setTitle("Dashboard");
+    }, []);
+
     return (
         <AdminLayout>
             <div className="flex flex-col">
@@ -36,10 +44,14 @@ const Home = () => {
                 <h1 className="py-3 text-2xl font-semibold text-primary mt-6">
                     Add New Product
                 </h1>
-                <div className="flex flex-col w-full h-[200px] bg-gray-300 mt-4 rounded-lg justify-center items-center gap-3 text-primary">
-                    <MdOutlineUploadFile size={44} />
-                    <p className="text-center">Input New Product with detail & category </p>
-                </div>
+                <Link href="/admin/product/add">
+                    <div className="flex flex-col w-full h-[200px] bg-gray-300 mt-4 rounded-lg justify-center items-center gap-3 text-primary">
+                        <MdOutlineUploadFile size={44} />
+                        <p className="text-center">
+                            Input New Product with detail & category{" "}
+                        </p>
+                    </div>
+                </Link>
             </div>
         </AdminLayout>
     );

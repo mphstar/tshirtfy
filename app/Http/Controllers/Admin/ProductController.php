@@ -12,4 +12,10 @@ class ProductController extends Controller
     {
         return Inertia::render('Admin/CreateProduct');
     }
+
+    public function product()
+    {
+        return Inertia::render('Admin/Product');
+    }
+
 }

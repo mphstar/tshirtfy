@@ -29,4 +29,5 @@ Route::get('/login', [LandingController::class, 'login']);
 Route::prefix('admin')->group(function () {
     Route::get('/', [AdminController::class, 'index']);
     Route::get('/product/add', [ProductController::class, 'create']);
+    Route::get('/product', [ProductController::class, 'product']);
 });

@@ -1,9 +1,17 @@
-import React from "react";
+import React, { useEffect } from "react";
 import AdminLayout from "../../Layouts/AdminLayout";
 import { MdOutlineUploadFile } from "react-icons/md";
 import { RiArrowDropDownLine } from "react-icons/ri";
+import useAdminStore from "../../Store/AdminStore";
 
 const CreateProduct = () => {
+
+    const store = useAdminStore();
+
+    useEffect(() => {
+        store.setTitle("Category");
+    }, []);
+
     return (
         <AdminLayout>
             <div className="flex flex-col">
