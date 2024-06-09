@@ -5,7 +5,7 @@ const HeaderAdmin = () => {
     const store = useAdminStore();
 
     return (
-        <div className="flex sticky top-0 w-full px-4 md:px-8 py-2 border-b-[2px] z-[50] bg-white duration-300 ease-in-out items-center">
+        <div className="flex w-full px-4 md:px-8 py-2 z-[50] bg-white duration-300 ease-in-out items-center">
             <div className="flex items-center flex-1 gap-2">
                 <div className="md:hidden p-3 dark:fill-primary-dark scale-">
                     <svg
@@ -22,16 +22,14 @@ const HeaderAdmin = () => {
                     </svg>
                 </div>
 
-                <h1 className="font-semibold">{store.title}</h1>
+                {/* <h1 className="font-semibold">{store.title}</h1> */}
             </div>
             <div className="flex flex-row items-center gap-4">
-                <div className="w-10 rounded-full">
-                    <img
-                        className="rounded-full"
-                        alt="Tailwind CSS Navbar component"
-                        src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg"
-                    />
+                <div className="flex flex-col items-end">
+                    <h1 className="text-primary font-bold">Diprojectin</h1>
+                    <p className="text-xs -translate-y-1">Admin</p>
                 </div>
+                <img className="" src="/assets/images/diprojectin.png" alt="" />
             </div>
         </div>
     );

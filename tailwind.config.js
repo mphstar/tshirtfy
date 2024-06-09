@@ -6,7 +6,11 @@ export default {
     "./resources/**/*.jsx",
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        primary: "#BF1313"
+      }
+    },
   },
   plugins: [],
 }
