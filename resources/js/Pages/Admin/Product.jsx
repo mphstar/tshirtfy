@@ -1,16 +1,35 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import AdminLayout from "../../Layouts/AdminLayout";
 import { FaEdit, FaSearch } from "react-icons/fa";
 import { FaTrash } from "react-icons/fa6";
 import { RiArrowDropDownLine } from "react-icons/ri";
 import useAdminStore from "../../Store/AdminStore";
-import { Link } from "@inertiajs/react";
+import { Link, router, usePage } from "@inertiajs/react";
 
 const Product = () => {
     const store = useAdminStore();
 
+    const page = usePage();
+
+    const [search, setSearch] = useState("");
+
+    const handleSearch = (e) => {
+        e.preventDefault();
+
+        router.get(`/admin/product?search=${search}`);
+    };
+
+    const handleFilter = (e) => {
+        router.get(`/admin/product?tag=${e.target.value}`);
+    };
+
     useEffect(() => {
         store.setTitle("Category");
+
+        // cek jika terdapat parameter search
+        if (page.props.search) {
+            setSearch(page.props.search);
+        }
     }, []);
     return (
         <AdminLayout>
@@ -20,13 +39,17 @@ const Product = () => {
                 </h1>
                 <div className="flex flex-col gap-3 md:flex-row md:justify-between">
                     <div className="flex flex-row bg-gray-200 px-3 py-2 gap-2">
-                        <input
-                            className="bg-transparent outline-none w-full"
-                            type="text"
-                            name=""
-                            placeholder="Search..."
-                            id=""
-                        />
+                        <form onSubmit={handleSearch} action="">
+                            <input
+                                className="bg-transparent outline-none w-full"
+                                type="text"
+                                name=""
+                                value={search}
+                                onChange={(e) => setSearch(e.target.value)}
+                                placeholder="Search..."
+                                id=""
+                            />
+                        </form>
                         <FaSearch className="h-full text-gray-500" />
                     </div>
                     <div className="flex flex-row gap-3 w-full md:w-fit">
@@ -35,11 +58,16 @@ const Product = () => {
                                 <select
                                     className="bg-gray-200 pr-12 outline-none w-full px-3 py-2 appearance-none"
                                     name=""
+                                    value={page.props.tag_id ?? ""}
                                     id=""
+                                    onChange={handleFilter}
                                 >
-                                    <option value="">Tshirt</option>
-                                    <option value="">Polo</option>
-                                    <option value="">Shoes</option>
+                                    <option value="">All</option>
+                                    {page.props.tag.map((tag, i) => (
+                                        <option value={tag.id} key={i}>
+                                            {tag.nama}
+                                        </option>
+                                    ))}
                                 </select>
                                 <div className="absolute top-0 right-4 h-full pointer-events-none">
                                     <RiArrowDropDownLine className="h-full" />
@@ -78,7 +106,7 @@ const Product = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            {Array.from({ length: 10 }).map((_, i) => (
+                            {page.props.data.map((product, i) => (
                                 <tr
                                     className={`${
                                         i % 2 == 0
@@ -91,18 +119,22 @@ const Product = () => {
                                         <div className="w-20 h-20">
                                             <img
                                                 className="w-20 h-20  object-cover"
-                                                src="https://picsum.photos/200/300"
+                                                src={product.gambar}
                                                 alt=""
                                             />
                                         </div>
                                         {/* buatkan gambar agar tidak wrap */}
                                     </td>
                                     <td className="px-3 py-2">
-                                        T-shirt Pro V2
+                                        {product.nama}
                                     </td>
                                     <td className="px-3 py-2">Man</td>
-                                    <td className="px-3 py-2">20.000</td>
-                                    <td className="px-3 py-2">T-shirt</td>
+                                    <td className="px-3 py-2">
+                                        {product.harga}
+                                    </td>
+                                    <td className="px-3 py-2">
+                                        {product.tag.nama}
+                                    </td>
                                     <td className="px-3 py-2">
                                         <div className="flex gap-2">
                                             <button className="bg-orange-500 p-3 rounded-md text-white">
