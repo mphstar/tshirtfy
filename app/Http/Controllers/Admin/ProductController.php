@@ -15,12 +15,14 @@ class ProductController extends Controller
         return Inertia::render('Admin/CreateProduct');
     }
 
-    public function product()
+    public function product($id)
     {
 
         $data = Product::query();
 
         $data->with(['tag', 'kategori']);
+
+        $data->where('kategori_id', $id);
 
         if (request('search')) {
             $data->where('nama', 'like', '%' . request('search') . '%');
@@ -36,9 +38,27 @@ class ProductController extends Controller
 
         return Inertia::render('Admin/Product', [
             'data' => $data->get(),
+            'kategori_id' => $id,
             'tag' => $tag,
             'tag_id' => request('tag'),
             'search' => request('search')
         ]);
+    }
+
+    public function store(Request $request)
+    {
+
+        $request->validate([
+            'nama' => 'required',
+            'harga' => 'required|integer',
+            'kategori_id' => 'required',
+            'tag_id' => 'required',
+            'deskripsi' => 'required',
+            'gambar' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+
+        Product::create($request->all());
+
+        return redirect()->route('admin.product', ['id' => $request->kategori_id]);
     }
 }

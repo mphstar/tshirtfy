@@ -16,11 +16,11 @@ const Product = () => {
     const handleSearch = (e) => {
         e.preventDefault();
 
-        router.get(`/admin/product?search=${search}`);
+        router.get(`/admin/product/${page.props.kategori_id}?search=${search}`);
     };
 
     const handleFilter = (e) => {
-        router.get(`/admin/product?tag=${e.target.value}`);
+        router.get(`/admin/product/${page.props.kategori_id}?tag=${e.target.value}`);
     };
 
     useEffect(() => {
@@ -128,7 +128,7 @@ const Product = () => {
                                     <td className="px-3 py-2">
                                         {product.nama}
                                     </td>
-                                    <td className="px-3 py-2">Man</td>
+                                    <td className="px-3 py-2">{product.kategori.nama}</td>
                                     <td className="px-3 py-2">
                                         {product.harga}
                                     </td>

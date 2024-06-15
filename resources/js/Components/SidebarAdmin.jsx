@@ -9,9 +9,6 @@ import { IoIosArrowDown } from "react-icons/io";
 const SidebarAdmin = () => {
     const store = useAdminStore();
 
-    useEffect(() => {
-        store.setTitle("Dashboard");
-    }, []);
 
     const [menuDropdown, setMenuDropdown] = useState(false);
 
@@ -71,14 +68,16 @@ const SidebarAdmin = () => {
                         !menuDropdown ? "h-0" : "h-[220px]"
                     }`}
                 >
-                    <Link href="/admin/product">
+                    <Link href="/admin/product/1">
                         <li className={`px-2 py-2 pl-12 text-[16px]`}>Men</li>
                     </Link>
-                    <Link href="/admin/product">
-                        <li className={`px-2 py-2 pl-12 text-[16px]`}>Wiman</li>
+                    <Link href="/admin/product/2">
+                        <li className={`px-2 py-2 pl-12 text-[16px]`}>Woman</li>
                     </Link>
-                    <Link href="/admin/product">
-                        <li className={`px-2 py-2 pl-12 text-[16px]`}>Unisex</li>
+                    <Link href="/admin/product/3">
+                        <li className={`px-2 py-2 pl-12 text-[16px]`}>
+                            Unisex
+                        </li>
                     </Link>
                 </ul>
             </div>
