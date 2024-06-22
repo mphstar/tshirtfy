@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\TagController;
 use App\Http\Controllers\LandingController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -32,4 +33,9 @@ Route::prefix('admin')->group(function () {
     Route::get('/product/{id}', [ProductController::class, 'product']);
 
     Route::post('/product/add', [ProductController::class, 'store']);
+
+    Route::get('/tag', [TagController::class, 'index']);
+    Route::get('/tag/add', [TagController::class, 'create']);
+    Route::get('/tag/edit/{id}', [TagController::class, 'edit']);
+    
 });

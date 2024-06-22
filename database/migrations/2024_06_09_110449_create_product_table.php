@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('gambar');
             $table->foreignId('kategori_id')->constrained('kategori')->onUpdate('cascade')->onDelete('cascade');
             $table->foreignId('tag_id')->constrained('tag')->onUpdate('cascade')->onDelete('cascade');
-            $table->string('url');
+            // $table->string('url');
             $table->timestamps();
         });
     }

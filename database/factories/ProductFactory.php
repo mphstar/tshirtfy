@@ -21,11 +21,8 @@ class ProductFactory extends Factory
             'harga' => $this->faker->randomNumber(2),
             'deskripsi' => $this->faker->text,
             'gambar' => 'https://picsum.photos/200/300',
-            'url' => $this->faker->url,
             'kategori_id' => $this->faker->numberBetween(1, 3),
             'tag_id' => $this->faker->numberBetween(1, 7)
-
-
         ];
     }
 }

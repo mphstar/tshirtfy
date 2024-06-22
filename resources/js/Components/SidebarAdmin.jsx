@@ -5,10 +5,10 @@ import { MdOutlineCategory } from "react-icons/md";
 import { Link } from "@inertiajs/react";
 import { FaHome } from "react-icons/fa";
 import { IoIosArrowDown } from "react-icons/io";
+import { IoPricetagsOutline } from "react-icons/io5";
 
 const SidebarAdmin = () => {
     const store = useAdminStore();
-
 
     const [menuDropdown, setMenuDropdown] = useState(false);
 
@@ -43,6 +43,18 @@ const SidebarAdmin = () => {
                     >
                         <FaHome />
                         <span className={`text-[16px] `}>Home</span>
+                    </div>
+                </Link>
+                <Link href="/admin/tag">
+                    <div
+                        className={`flex w-full items-center gap-4 py-4 md:py-2 px-3 mt-2 ${
+                            store.title == "Tag"
+                                ? "bg-white rounded-md"
+                                : "text-white"
+                        }`}
+                    >
+                        <IoPricetagsOutline />
+                        <span className={`text-[16px] `}>Tag</span>
                     </div>
                 </Link>
                 <div
