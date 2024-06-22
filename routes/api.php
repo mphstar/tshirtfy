@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\TagController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -23,4 +24,6 @@ Route::post('/tag/add', [TagController::class, 'store']);
 Route::post('/tag/edit', [TagController::class, 'update']);
 Route::post('/tag/delete', [TagController::class, 'destroy']);
 
-
+Route::post('/product/add', [ProductController::class, 'store']);
+Route::post('/product/edit', [ProductController::class, 'update']);
+Route::post('/product/delete', [ProductController::class, 'destroy']);

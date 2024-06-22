@@ -25,4 +25,8 @@ class Product extends Model
     {
         return $this->belongsTo(Kategori::class);
     }
+
+    public function url(){
+        return $this->hasMany(ProductUrl::class, 'product_id', 'id');
+    }
 }

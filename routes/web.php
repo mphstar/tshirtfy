@@ -31,11 +31,10 @@ Route::prefix('admin')->group(function () {
     Route::get('/', [AdminController::class, 'index']);
     Route::get('/product/add', [ProductController::class, 'create']);
     Route::get('/product/{id}', [ProductController::class, 'product']);
+    Route::get('/product/edit/{id}', [ProductController::class, 'edit']);
 
-    Route::post('/product/add', [ProductController::class, 'store']);
 
     Route::get('/tag', [TagController::class, 'index']);
     Route::get('/tag/add', [TagController::class, 'create']);
     Route::get('/tag/edit/{id}', [TagController::class, 'edit']);
-    
 });

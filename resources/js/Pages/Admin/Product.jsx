@@ -12,6 +12,7 @@ const Product = () => {
     const page = usePage();
 
     const [search, setSearch] = useState("");
+    
 
     const handleSearch = (e) => {
         e.preventDefault();
@@ -20,7 +21,9 @@ const Product = () => {
     };
 
     const handleFilter = (e) => {
-        router.get(`/admin/product/${page.props.kategori_id}?tag=${e.target.value}`);
+        router.get(
+            `/admin/product/${page.props.kategori_id}?tag=${e.target.value}`
+        );
     };
 
     useEffect(() => {
@@ -74,7 +77,9 @@ const Product = () => {
                                 </div>
                             </div>
                         </label>
-                        <Link href="/admin/product/add">
+                        <Link
+                            href={`/admin/product/add?category=${page.props.kategori_id}`}
+                        >
                             <button className="bg-green-500 px-4 py-2 rounded-md text-white">
                                 Tambah
                             </button>
@@ -119,7 +124,7 @@ const Product = () => {
                                         <div className="w-20 h-20">
                                             <img
                                                 className="w-20 h-20  object-cover"
-                                                src={product.gambar}
+                                                src={`/images/${product.gambar}`}
                                                 alt=""
                                             />
                                         </div>
@@ -128,7 +133,9 @@ const Product = () => {
                                     <td className="px-3 py-2">
                                         {product.nama}
                                     </td>
-                                    <td className="px-3 py-2">{product.kategori.nama}</td>
+                                    <td className="px-3 py-2">
+                                        {product.kategori.nama}
+                                    </td>
                                     <td className="px-3 py-2">
                                         {product.harga}
                                     </td>
@@ -137,9 +144,13 @@ const Product = () => {
                                     </td>
                                     <td className="px-3 py-2">
                                         <div className="flex gap-2">
-                                            <button className="bg-orange-500 p-3 rounded-md text-white">
-                                                <FaEdit size={12} />
-                                            </button>
+                                            <Link
+                                                href={`/admin/product/edit/${product.id}`}
+                                            >
+                                                <button className="bg-orange-500 p-3 rounded-md text-white">
+                                                    <FaEdit size={12} />
+                                                </button>
+                                            </Link>
                                             <button className="bg-red-500 p-3 rounded-md text-white">
                                                 <FaTrash size={12} />
                                             </button>

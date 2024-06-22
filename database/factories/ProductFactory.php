@@ -18,9 +18,9 @@ class ProductFactory extends Factory
     {
         return [
             'nama' => $this->faker->name,
-            'harga' => $this->faker->randomNumber(2),
+            'harga' => $this->faker->numberBetween(10000, 100000),
             'deskripsi' => $this->faker->text,
-            'gambar' => 'https://picsum.photos/200/300',
+            'gambar' => '1719057780.png',
             'kategori_id' => $this->faker->numberBetween(1, 3),
             'tag_id' => $this->faker->numberBetween(1, 7)
         ];

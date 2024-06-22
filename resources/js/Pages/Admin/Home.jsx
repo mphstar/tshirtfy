@@ -4,7 +4,7 @@ import { MdOutlineUploadFile } from "react-icons/md";
 import useAdminStore from "../../Store/AdminStore";
 import { Link } from "@inertiajs/react";
 
-const Home = () => {
+const Home = (props) => {
     const store = useAdminStore();
 
     useEffect(() => {
@@ -26,19 +26,12 @@ const Home = () => {
                     <h1 className="text-xl font-semibold">Total Product</h1>
                     <span className="font-semibold text-xl">Uploaded</span>
                     <div className="flex flex-row mt-12 gap-3 overflow-x-auto scrollbar-hide">
-                        <ItemCard name={"T-shirt"} total={20} />
-                        <div className="w-[2px] h-full bg-white"></div>
-                        <ItemCard name={"Jacket"} total={64} />
-                        <div className="w-[2px] h-full bg-white"></div>
-                        <ItemCard name={"Shoes"} total={32} />
-                        <div className="w-[2px] h-full bg-white"></div>
-                        <ItemCard name={"Hoodie"} total={34} />
-                        <div className="w-[2px] h-full bg-white"></div>
-                        <ItemCard name={"Polo Series"} total={36} />
-                        <div className="w-[2px] h-full bg-white"></div>
-                        <ItemCard name={"Totebag"} total={36} />
-                        <div className="w-[2px] h-full bg-white"></div>
-                        <ItemCard name={"Slippers"} total={36} />
+                        {props.tag.map((item, i) => (
+                            <div key={i} className="flex flex-row gap-4">
+                                <ItemCard name={item.nama} total={item.product.length} />
+                                <div className="w-[2px] h-full bg-white"></div>
+                            </div>
+                        ))}
                     </div>
                 </div>
                 <h1 className="py-3 text-2xl font-semibold text-primary mt-6">
