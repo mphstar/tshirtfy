@@ -22,6 +22,7 @@ class LandingController extends Controller
 
         $product->with(['url']);
 
+
         if (request('filter')) {
             $product->orderBy('created_at', request('filter') == 'new' ? 'desc' : 'asc');
         } else {

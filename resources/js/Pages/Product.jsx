@@ -8,6 +8,8 @@ import getParamByName from "../Utils/GetParamByName";
 import { GrFilter } from "react-icons/gr";
 import AddParamUrl from "../Utils/AddParamUrl";
 import formatRupiah from "../Utils/FormatRupiah";
+import CustomModal from "../Components/CustomModal";
+import useProduct from "../Store/ProductStore";
 
 const Product = (props) => {
     const store = useHomeStore();
@@ -30,8 +32,11 @@ const Product = (props) => {
         return () => {};
     }, []);
 
+    const data = useProduct();
+
     return (
         <HomeLayout>
+            <MyModal />
             <div className="flex flex-col container px-4 max-w-[1000px] mx-auto py-6">
                 <div className="flex flex-row gap-4 w-full h-fit">
                     <div
@@ -146,7 +151,7 @@ const Product = (props) => {
                                     : "bg-transparent text-black"
                             } items-center`}
                         >
-                            <p className="flex-1">Men</p>
+                            <p className="flex-1">Unisex</p>
                             <IoIosArrowUp
                                 className={`${
                                     collapseUnisex ? "rotate-0" : "rotate-180"
@@ -216,14 +221,21 @@ const Product = (props) => {
                         </div>
                         <div className="grid grid-cols-2 md:grid-cols-4 mt-4 h-fit gap-4">
                             {props.data.map((product, i) => (
-                                <CardProduct
-                                    key={i}
-                                    product={{
-                                        name: product.nama,
-                                        harga: formatRupiah(product.harga),
-                                        image: "/images/" + product.gambar,
+                                <div
+                                    onClick={() => {
+                                        data.setProduct(product);
+                                        data.handleModal();
                                     }}
-                                />
+                                    key={i}
+                                >
+                                    <CardProduct
+                                        product={{
+                                            name: product.nama,
+                                            harga: formatRupiah(product.harga),
+                                            image: "/images/" + product.gambar,
+                                        }}
+                                    />
+                                </div>
                             ))}
                         </div>
                     </div>
@@ -247,6 +259,50 @@ const CardProduct = ({ product }) => {
                 {product.harga}
             </p>
         </div>
+    );
+};
+
+const MyModal = () => {
+    const data = useProduct();
+
+    return (
+        <CustomModal
+            title={"Product"}
+            show={data.showModal}
+            setShow={data.handleModal}
+        >
+            <div className="flex flex-col">
+                <div className="flex flex-row">
+                    <p className="w-[80px]">Product</p>
+                    <p className="px-2">:</p>
+                    <p>{data.product.nama}</p>
+                </div>
+                <div className="flex flex-row">
+                    <p className="w-[80px]">Price</p>
+                    <p className="px-2">:</p>
+                    <p>{formatRupiah(data.product.harga)}</p>
+                </div>
+                {data.product.url &&
+                    data.product.url.map((item, i) => (
+                        <div key={i}>
+                            <p className="mt-2 font-semibold">Link Product</p>
+                            <div className="flex flex-row">
+                                <p className="w-[80px]">{item.name}</p>
+                                <p className="px-2">:</p>
+                                <p>
+                                    <a
+                                        target="_blank"
+                                        className="text-blue-600"
+                                        href={item.url}
+                                    >
+                                        Disini
+                                    </a>
+                                </p>
+                            </div>
+                        </div>
+                    ))}
+            </div>
+        </CustomModal>
     );
 };
 

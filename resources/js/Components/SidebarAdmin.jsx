@@ -77,7 +77,7 @@ const SidebarAdmin = () => {
                 </div>
                 <ul
                     className={`flex flex-col text-white cursor-pointer duration-300 ease-in-out overflow-hidden ${
-                        !menuDropdown ? "h-0" : "h-[220px]"
+                        !menuDropdown ? "h-0" : "h-[120px]"
                     }`}
                 >
                     <Link href="/admin/product/1">
