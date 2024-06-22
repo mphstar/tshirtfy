@@ -7,6 +7,7 @@ namespace Database\Seeders;
 use App\Models\Kategori;
 use App\Models\Product;
 use App\Models\Tag;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -22,6 +23,13 @@ class DatabaseSeeder extends Seeder
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
+
+        User::create([
+            'id' => 1,
+            'name' => 'Test User',
+            'email' => 'admin@gmail.com',
+            'password' => bcrypt('12345678'),
+        ]);
 
         Kategori::create([
             'id' => 1,

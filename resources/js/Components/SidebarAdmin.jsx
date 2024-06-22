@@ -5,7 +5,7 @@ import { MdOutlineCategory } from "react-icons/md";
 import { Link } from "@inertiajs/react";
 import { FaHome } from "react-icons/fa";
 import { IoIosArrowDown } from "react-icons/io";
-import { IoPricetagsOutline } from "react-icons/io5";
+import { IoLogOutOutline, IoPricetagsOutline } from "react-icons/io5";
 
 const SidebarAdmin = () => {
     const store = useAdminStore();
@@ -92,6 +92,18 @@ const SidebarAdmin = () => {
                         </li>
                     </Link>
                 </ul>
+                <a href="/logout">
+                    <div
+                        className={`flex w-full items-center gap-4 py-4 md:py-2 px-3 mt-2 ${
+                            store.title == "Tag"
+                                ? "bg-white rounded-md"
+                                : "text-white"
+                        }`}
+                    >
+                        <IoLogOutOutline />
+                        <span className={`text-[16px] `}>Logout</span>
+                    </div>
+                </a>
             </div>
             <div
                 onClick={store.handleSidebar}
