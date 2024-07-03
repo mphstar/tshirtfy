@@ -23,6 +23,8 @@ use Inertia\Inertia;
 
 Route::get('/', [LandingController::class, 'index']);
 Route::get('/product', [LandingController::class, 'product']);
+Route::get('/cart', [LandingController::class, 'cart']);
+Route::get('/product/{id}', [LandingController::class, 'detailProduct']);
 Route::get('/artikel', [LandingController::class, 'artikel']);
 Route::get('/store', [LandingController::class, 'store']);
 Route::get('/service', [LandingController::class, 'service']);

@@ -104,6 +104,14 @@ const Header = () => {
                                 Login
                             </a>
                         </li>
+                        <li>
+                            <a
+                                href="/cart"
+                                className="text-gray-600 hover:text-gray-800"
+                            >
+                                Cart
+                            </a>
+                        </li>
                         <RxHamburgerMenu
                             onClick={() => setShowNavbar(true)}
                             className="md:hidden"

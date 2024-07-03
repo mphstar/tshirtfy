@@ -62,4 +62,26 @@ class LandingController extends Controller
     {
         return Inertia::render('Login', []);
     }
+
+    public function detailProduct($id)
+    {
+        $product = Product::with(['url', 'kategori', 'tag'])->find($id);
+
+        if (!$product) {
+            return redirect('/product');
+        }
+
+        return Inertia::render('DetailProduct', [
+            'data' => $product,
+        ]);
+    }
+
+    public function cart()
+    {
+
+        $data = Product::with(['url', 'kategori', 'tag'])->find([1, 2, 3]);
+        return Inertia::render('Cart', [
+            'data' => $data,
+        ]);
+    }
 }

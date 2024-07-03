@@ -12,7 +12,6 @@ const Product = () => {
     const page = usePage();
 
     const [search, setSearch] = useState("");
-    
 
     const handleSearch = (e) => {
         e.preventDefault();
