@@ -99,6 +99,12 @@ class ProductController extends Controller
             }
         }
 
+        if ($request->has('isDeleteAdditional')) {
+            if ($request->isDeleteAdditional == "true") {
+                ImageAdditionalProduct::where('product_id', $data->id)->delete();
+            }
+        }
+
 
 
         foreach ($url as $key => $value) {
@@ -176,6 +182,12 @@ class ProductController extends Controller
                 $dataImage->product_id = $data->id;
                 $dataImage->gambar = $imageName;
                 $dataImage->save();
+            }
+        }
+
+        if ($request->has('isDeleteAdditional')) {
+            if ($request->isDeleteAdditional == "true") {
+                ImageAdditionalProduct::where('product_id', $data->id)->delete();
             }
         }
 

@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\TagController;
+use App\Http\Controllers\Admin\CoverController;
 use App\Http\Controllers\LandingController;
 use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
@@ -43,6 +44,10 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/product/add', [ProductController::class, 'create']);
         Route::get('/product/{id}', [ProductController::class, 'product']);
         Route::get('/product/edit/{id}', [ProductController::class, 'edit']);
+
+        Route::get('/cover/add', [CoverController::class, 'create']);
+        Route::get('/cover', [CoverController::class, 'cover']);
+        Route::get('/cover/edit/{id}', [CoverController::class, 'edit']);
 
 
         Route::get('/tag', [TagController::class, 'index']);

@@ -1,4 +1,4 @@
-import { Link } from "@inertiajs/react";
+import { Head, Link } from "@inertiajs/react";
 import React, { useEffect, useState } from "react";
 import { IoIosClose } from "react-icons/io";
 import { RxHamburgerMenu } from "react-icons/rx";
@@ -12,6 +12,7 @@ const Header = () => {
 
     return (
         <div className="sticky top-0 z-10 bg-[#D9D9D9] flex w-full items-center">
+            <Head title={store.page.toUpperCase()} />
             <div className="container mx-auto max-w-[1000px] flex justify-between items-center px-6 py-3 md:py-0">
                 <div className="flex items-center gap-3">
                     <img

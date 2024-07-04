@@ -32,6 +32,7 @@ const Tag = () => {
 
     const DeleteData = (id) => {
         ConfirmDialog({
+            isDelete: true,
             onConfirm: async () => {
                 Swal.fire({
                     title: "Loading",

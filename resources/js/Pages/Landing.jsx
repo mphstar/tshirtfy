@@ -5,7 +5,7 @@ import Footer from "../Components/Footer";
 import HomeLayout from "../Layouts/HomeLayout";
 import useHomeStore from "../Store/HomeStore";
 
-const Landing = () => {
+const Landing = (props) => {
     const [selectedTab, setSelectedTab] = useState("jacket");
 
     const store = useHomeStore();
@@ -28,28 +28,20 @@ const Landing = () => {
                 showStatus={false}
                 emulateTouch
             >
-                <div
-                    data-aos="fade-up"
-                    data-aos-delay="0"
-                    data-aos-duration="1000"
-                >
-                    <img
-                        className="max-h-screen object-cover"
-                        src="/assets/images/hero.png"
-                        alt="hero"
-                    />
-                </div>
-                <div
-                    data-aos="fade-up"
-                    data-aos-delay="0"
-                    data-aos-duration="1000"
-                >
-                    <img
-                        className="max-h-screen object-cover"
-                        src="/assets/images/hero1.png"
-                        alt="hero1"
-                    />
-                </div>
+                {props.cover.map((item, i) => (
+                    <div
+                        key={i}
+                        data-aos="fade-up"
+                        data-aos-delay="0"
+                        data-aos-duration="1000"
+                    >
+                        <img
+                            className="max-h-screen object-cover"
+                            src={`/cover/${item.gambar}`}
+                            alt="hero"
+                        />
+                    </div>
+                ))}
             </Carousel>
             <Carousel
                 className=" md:hidden w-full mt-6"

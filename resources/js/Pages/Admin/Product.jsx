@@ -5,6 +5,8 @@ import { FaTrash } from "react-icons/fa6";
 import { RiArrowDropDownLine } from "react-icons/ri";
 import useAdminStore from "../../Store/AdminStore";
 import { Link, router, usePage } from "@inertiajs/react";
+import ConfirmDialog from "../../Utils/ConfirmDialog";
+import Swal from "sweetalert2";
 
 const Product = () => {
     const store = useAdminStore();
@@ -33,6 +35,41 @@ const Product = () => {
             setSearch(page.props.search);
         }
     }, []);
+
+    const DeleteData = (id) => {
+        ConfirmDialog({
+            isDelete: true,
+            onConfirm: async () => {
+                Swal.fire({
+                    title: "Loading",
+                    html: '<div class="body-loading"><div class="loadingspinner"></div></div>', // add html attribute if you want or remove
+                    allowOutsideClick: false,
+                    showConfirmButton: false,
+                });
+
+                const respone = await fetch(`/api/product/delete`, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        Accept: "application/json",
+                    },
+                    body: JSON.stringify({
+                        id: id,
+                    }),
+                });
+
+                const data = await respone.json();
+
+                if (respone.status === 200) {
+                    Swal.fire("Success", data.message, "success");
+                    router.reload();
+                } else {
+                    Swal.fire("Error", data.message, "error");
+                }
+            },
+        });
+    };
+
     return (
         <AdminLayout>
             <div className="flex flex-col">
@@ -150,7 +187,12 @@ const Product = () => {
                                                     <FaEdit size={12} />
                                                 </button>
                                             </Link>
-                                            <button className="bg-red-500 p-3 rounded-md text-white">
+                                            <button
+                                                onClick={() =>
+                                                    DeleteData(product.id)
+                                                }
+                                                className="bg-red-500 p-3 rounded-md text-white"
+                                            >
                                                 <FaTrash size={12} />
                                             </button>
                                         </div>

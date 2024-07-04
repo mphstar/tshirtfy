@@ -7,7 +7,7 @@ const Login = (props) => {
     const store = useHomeStore();
 
     useEffect(() => {
-        store.setPage("login");
+        store.setPage("Login");
 
         return () => {};
     }, []);

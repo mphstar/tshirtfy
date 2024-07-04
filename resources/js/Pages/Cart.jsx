@@ -10,6 +10,12 @@ import useHomeStore from "../Store/HomeStore";
 const Cart = () => {
     const homeStore = useHomeStore();
 
+    useEffect(() => {
+        homeStore.setPage("Cart");
+
+        return () => {};
+    }, []);
+
     const removeItemFromCart = (item) => {
         Swal.fire({
             title: "Are you sure?",

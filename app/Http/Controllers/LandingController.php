@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\CoverLanding;
 use App\Models\Product;
 use App\Models\Tag;
 use Illuminate\Http\Request;
@@ -11,7 +12,10 @@ class LandingController extends Controller
 {
     public function index()
     {
-        return Inertia::render('Landing', []);
+        $cover = CoverLanding::orderBy('created_at', 'desc')->get();
+        return Inertia::render('Landing', [
+            'cover' => $cover,
+        ]);
     }
 
     public function product()

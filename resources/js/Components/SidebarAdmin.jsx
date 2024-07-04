@@ -2,10 +2,14 @@ import React, { useEffect, useState } from "react";
 import useAdminStore from "../Store/AdminStore";
 import { FaBookOpenReader } from "react-icons/fa6";
 import { MdOutlineCategory } from "react-icons/md";
-import { Link } from "@inertiajs/react";
+import { Head, Link } from "@inertiajs/react";
 import { FaHome } from "react-icons/fa";
 import { IoIosArrowDown } from "react-icons/io";
-import { IoLogOutOutline, IoPricetagsOutline } from "react-icons/io5";
+import {
+    IoLogOutOutline,
+    IoPricetagsOutline,
+    IoSettingsOutline,
+} from "react-icons/io5";
 
 const SidebarAdmin = () => {
     const store = useAdminStore();
@@ -18,6 +22,7 @@ const SidebarAdmin = () => {
 
     return (
         <>
+            <Head title={store.title} />
             <div
                 className={`h-[100dvh] z-[99] bg-primary flex max-w-[90%] md:min-w-0 w-[400px] md:w-[200px] lg:w-[300px] fixed ${
                     store.showSidebar ? "translate-x-0" : "-translate-x-[100%]"
@@ -57,6 +62,7 @@ const SidebarAdmin = () => {
                         <span className={`text-[16px] `}>Tag</span>
                     </div>
                 </Link>
+
                 <div
                     onClick={handleMenu}
                     className={`flex w-full items-center gap-4 py-4 md:py-2 px-3 mt-2 ${
@@ -92,9 +98,23 @@ const SidebarAdmin = () => {
                         </li>
                     </Link>
                 </ul>
+                <Link href="/admin/cover">
+                    <div
+                        className={`flex w-full items-center gap-4 py-4 md:py-2 px-3 mt-2 ${
+                            store.title == "Landing Page"
+                                ? "bg-white rounded-md"
+                                : "text-white"
+                        }`}
+                    >
+                        <IoSettingsOutline />
+                        <span className={`text-[16px] `}>
+                            Cover Landing Page
+                        </span>
+                    </div>
+                </Link>
                 <a href="/logout">
                     <div
-                        className={`flex w-full items-center gap-4 py-4 md:py-2 px-3 mt-2 text-white
+                        className={`flex w-full items-center gap-4 py-4 md:py-2 px-3  text-white
                         }`}
                     >
                         <IoLogOutOutline />
@@ -102,6 +122,7 @@ const SidebarAdmin = () => {
                     </div>
                 </a>
             </div>
+
             <div
                 onClick={store.handleSidebar}
                 className={`duration-500 ease-in-out min-h-[100dvh] w-screen flex z-[90] ${

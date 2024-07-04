@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\CoverController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\TagController;
 use Illuminate\Http\Request;
@@ -27,3 +28,7 @@ Route::post('/tag/delete', [TagController::class, 'destroy']);
 Route::post('/product/add', [ProductController::class, 'store']);
 Route::post('/product/edit', [ProductController::class, 'update']);
 Route::post('/product/delete', [ProductController::class, 'destroy']);
+
+Route::post('/cover/add', [CoverController::class, 'store']);
+Route::post('/cover/edit', [CoverController::class, 'update']);
+Route::post('/cover/delete', [CoverController::class, 'destroy']);
