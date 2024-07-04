@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('nama');
             $table->integer('harga');
+            $table->text('overview');
             $table->text('deskripsi');
             $table->string('gambar');
             $table->foreignId('kategori_id')->constrained('kategori')->onUpdate('cascade')->onDelete('cascade');

@@ -94,10 +94,7 @@ const SidebarAdmin = () => {
                 </ul>
                 <a href="/logout">
                     <div
-                        className={`flex w-full items-center gap-4 py-4 md:py-2 px-3 mt-2 ${
-                            store.title == "Tag"
-                                ? "bg-white rounded-md"
-                                : "text-white"
+                        className={`flex w-full items-center gap-4 py-4 md:py-2 px-3 mt-2 text-white
                         }`}
                     >
                         <IoLogOutOutline />

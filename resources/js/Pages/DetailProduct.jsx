@@ -7,6 +7,8 @@ import "react-image-gallery/styles/css/image-gallery.css";
 import useProduct from "../Store/ProductStore";
 import CustomModal from "../Components/CustomModal";
 import formatRupiah from "../Utils/FormatRupiah";
+import Swal from "sweetalert2";
+import useHomeStore from "../Store/HomeStore";
 
 const MyModal = () => {
     const data = useProduct();
@@ -53,32 +55,49 @@ const MyModal = () => {
 };
 
 const DetailProduct = (props) => {
-    console.log(props);
-
     const images = [
         {
             original: `/images/${props.data.gambar}`,
             thumbnail: `/images/${props.data.gambar}`,
         },
-        {
-            original: `/images/${props.data.gambar}`,
-            thumbnail: `/images/${props.data.gambar}`,
-        },
-        {
-            original: `/images/${props.data.gambar}`,
-            thumbnail: `/images/${props.data.gambar}`,
-        },
-        {
-            original: `/images/${props.data.gambar}`,
-            thumbnail: `/images/${props.data.gambar}`,
-        },
-        {
-            original: `/images/${props.data.gambar}`,
-            thumbnail: `/images/${props.data.gambar}`,
-        },
+        ...props.data.additional_image.map((item) => ({
+            original: `/images/${item.gambar}`,
+            thumbnail: `/images/${item.gambar}`,
+        })),
     ];
 
     const data = useProduct();
+
+    const homeStore = useHomeStore()
+
+    const addToCart = (item) => {
+        // add item to local storage
+        let cart = localStorage.getItem("cart");
+        cart = cart ? JSON.parse(cart) : [];
+
+        const findItem = cart.find((i) => i.id === item.id);
+
+        if (findItem) {
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "Item already in cart!",
+            });
+            return;
+        }
+
+        cart.push(item);
+
+        homeStore.setData(cart)
+
+        localStorage.setItem("cart", JSON.stringify(cart));
+
+        Swal.fire({
+            icon: "success",
+            title: "Success",
+            text: "Item added to cart!",
+        });
+    };
 
     return (
         <HomeLayout>
@@ -107,7 +126,7 @@ const DetailProduct = (props) => {
                     <div data-aos="zoom-in" data-aos-duration="1000">
                         <ReactImageGallery items={images} />
                     </div>
-                    <div className="flex flex-col">
+                    <div className="flex flex-col md:min-w-[500px]">
                         <div
                             data-aos="fade-left"
                             data-aos-duration="1000"
@@ -130,11 +149,7 @@ const DetailProduct = (props) => {
                             data-aos-duration="1000"
                             data-aos-delay="500"
                         >
-                            Lorem ipsum dolor sit, amet consectetur adipisicing
-                            elit. Hic, sunt temporibus? Adipisci vero veniam
-                            itaque quisquam perferendis error, doloribus
-                            molestias laborum beatae, velit autem! Laborum
-                            minima eligendi voluptas qui accusantium?
+                            {props.data.overview}
                         </p>
                         <div
                             data-aos="fade-left"
@@ -151,7 +166,10 @@ const DetailProduct = (props) => {
                             >
                                 <FaCartShopping /> Order Here
                             </button>
-                            <button className="bg-[#FCA522] px-3 text-white flex justify-center items-center gap-3 py-2">
+                            <button
+                                onClick={() => addToCart(props.data)}
+                                className="bg-[#FCA522] px-3 text-white flex justify-center items-center gap-3 py-2"
+                            >
                                 <FaHeart /> Add Cart
                             </button>
                         </div>
@@ -164,10 +182,7 @@ const DetailProduct = (props) => {
                 >
                     <h1 className="font-semibold">Description</h1>
                     <p className="whitespace-break-spaces">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Laborum voluptatem assumenda facere cum dignissimos,
-                        illum ut! Accusantium maxime veniam adipisci obcaecati
-                        cum alias rerum sapiente nostrum? Aut ut blanditiis ad.
+                        {props.data.deskripsi}
                     </p>
                 </div>
             </div>

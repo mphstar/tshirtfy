@@ -1,11 +1,12 @@
 import { Link } from "@inertiajs/react";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { IoIosClose } from "react-icons/io";
 import { RxHamburgerMenu } from "react-icons/rx";
 import useHomeStore from "../Store/HomeStore";
 
 const Header = () => {
     const [showNavbar, setShowNavbar] = useState(false);
+
 
     const store = useHomeStore();
 
@@ -91,6 +92,23 @@ const Header = () => {
                                     SERVICES
                                 </Link>
                             </li>
+                            <li className="relative md:hidden">
+                                {store.data.length > 0 && (
+                                    <div className="absolute -top-2 -right-6 bg-red-500 text-white rounded-full px-2 text-xs">
+                                        {store.data.length}
+                                    </div>
+                                )}
+                                <Link
+                                    href="/cart"
+                                    className={`text-gray-600 pb-2 ${
+                                        store.page == "service"
+                                            ? "border-b-4 border-b-red-500"
+                                            : ""
+                                    } hover:text-gray-800`}
+                                >
+                                    CART
+                                </Link>
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -104,13 +122,18 @@ const Header = () => {
                                 Login
                             </a>
                         </li>
-                        <li>
-                            <a
+                        <li className="relative hidden md:flex">
+                            {store.data.length > 0 && (
+                                <div className="absolute -top-2 -right-6 bg-red-500 text-white rounded-full px-2 text-xs">
+                                    {store.data.length}
+                                </div>
+                            )}
+                            <Link
                                 href="/cart"
                                 className="text-gray-600 hover:text-gray-800"
                             >
                                 Cart
-                            </a>
+                            </Link>
                         </li>
                         <RxHamburgerMenu
                             onClick={() => setShowNavbar(true)}

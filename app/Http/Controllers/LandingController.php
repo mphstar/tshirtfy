@@ -65,7 +65,7 @@ class LandingController extends Controller
 
     public function detailProduct($id)
     {
-        $product = Product::with(['url', 'kategori', 'tag'])->find($id);
+        $product = Product::with(['url', 'kategori', 'tag', 'additional_image'])->find($id);
 
         if (!$product) {
             return redirect('/product');

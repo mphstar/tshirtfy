@@ -19,9 +19,12 @@ const CreateProduct = () => {
     const [form, setForm] = useState({
         nama: page.props.data?.nama ?? "",
         gambar: undefined,
+        additional_image: undefined,
+        isDeleteAdditional: false,
         kategori_id: page.props.data?.kategori_id ?? "",
         tag_id: page.props.data?.tag_id ?? "",
         deskripsi: page.props.data?.deskripsi ?? "",
+        overview: page.props.data?.overview ?? "",
         harga: page.props.data?.harga ?? "",
         url: page.props.data?.url
             ? page.props.data?.url.map((item, i) => {
@@ -44,15 +47,25 @@ const CreateProduct = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        console.log(form);
+        // console.log(form);
 
         let formData = new FormData();
         formData.append("id", page.props.data?.id ?? "");
         formData.append("gambar", form.gambar);
+
+        if (form.additional_image) {
+            Array.from(form.additional_image).forEach((item) => {
+                formData.append("additional_image[]", item);
+            });
+        }
+
+        formData.append("isDeleteAdditional", form.isDeleteAdditional);
         formData.append("nama", form.nama);
         formData.append("kategori_id", form.kategori_id);
         formData.append("tag_id", form.tag_id);
         formData.append("deskripsi", form.deskripsi);
+        formData.append("overview", form.overview);
+
         formData.append("harga", form.harga);
         formData.append("url", JSON.stringify(form.url));
         ConfirmDialog({
@@ -150,6 +163,83 @@ const CreateProduct = () => {
                         </p>
                     </label>
 
+                    {/* additional image */}
+                    <label>
+                        <p className="text-primary py-2 font-semibold">
+                            Additional Image Product
+                        </p>
+                        <div className="flex gap-2">
+                            <input
+                                className="bg-gray-200 outline-none w-full px-3 py-2"
+                                type="file"
+                                multiple
+                                name="additional"
+                                onChange={(e) => {
+                                    setForm({
+                                        ...form,
+                                        additional_image: e.target.files,
+                                        isDeleteAdditional: false,
+                                    });
+                                }}
+                                id=""
+                            />
+                            <button
+                                type="button"
+                                onClick={() => {
+                                    setForm({
+                                        ...form,
+                                        additional_image: undefined,
+                                        isDeleteAdditional: true,
+                                    });
+                                }}
+                                className="px-2 py-1 bg-red-500 text-white rounded-md"
+                            >
+                                Reset
+                            </button>
+                        </div>
+                    </label>
+                    {form.isDeleteAdditional && (
+                        <span className="text-green-500 text-sm">
+                            Addition Image will be reset
+                        </span>
+                    )}
+
+                    {!form.isDeleteAdditional && (
+                        <div className="flex overflow-x-auto gap-3 w-full">
+                            {page.props.data?.additional_image &&
+                                form.additional_image == undefined &&
+                                page.props.data.additional_image.map(
+                                    (item, i) => (
+                                        <div
+                                            key={i}
+                                            className="h-[200px] bg-red-500 w-[200px] relative"
+                                        >
+                                            <img
+                                                className="absolute w-full h-full object-cover"
+                                                src={`/images/${item.gambar}`}
+                                                alt="gambar"
+                                            />
+                                        </div>
+                                    )
+                                )}
+                            {form.additional_image &&
+                                Array.from(form.additional_image).map(
+                                    (item, i) => (
+                                        <div
+                                            key={i}
+                                            className="h-[200px] bg-red-500 w-[200px] relative"
+                                        >
+                                            <img
+                                                className="absolute w-full h-full object-cover"
+                                                src={URL.createObjectURL(item)}
+                                                alt="gambar"
+                                            />
+                                        </div>
+                                    )
+                                )}
+                        </div>
+                    )}
+
                     <label>
                         <p className="text-primary py-2 font-semibold">
                             Product Category
@@ -197,6 +287,18 @@ const CreateProduct = () => {
                                 <RiArrowDropDownLine className="h-full" />
                             </div>
                         </div>
+                    </label>
+                    <label>
+                        <p className="text-primary py-2 font-semibold">
+                            Product Overview
+                        </p>
+                        <textarea
+                            className="bg-gray-200 h-40 outline-none w-full px-3 py-2"
+                            name="overview"
+                            value={form.overview}
+                            onChange={handleForm}
+                            id=""
+                        ></textarea>
                     </label>
                     <label>
                         <p className="text-primary py-2 font-semibold">

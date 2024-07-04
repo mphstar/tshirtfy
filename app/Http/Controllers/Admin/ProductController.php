@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\ImageAdditionalProduct;
 use App\Models\Kategori;
 use App\Models\Product;
 use App\Models\ProductUrl;
@@ -29,7 +30,7 @@ class ProductController extends Controller
 
         $data = Product::query();
 
-        $data->with(['tag', 'kategori']);
+        $data->with(['tag', 'kategori', 'additional_image', 'url']);
 
         $data->where('kategori_id', $id);
 
@@ -62,9 +63,11 @@ class ProductController extends Controller
             'tag_id' => 'required',
             'harga' => 'required',
             'deskripsi' => 'required',
+            'overview' => 'required',
             'gambar' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:4096',
             'url' => 'required'
         ]);
+
 
         $url = json_decode($request->url);
         $imageName = time() . '.' . $request->gambar->extension();
@@ -78,8 +81,25 @@ class ProductController extends Controller
         $data->tag_id = $request->tag_id;
         $data->harga = $request->harga;
         $data->deskripsi = $request->deskripsi;
+        $data->overview = $request->overview;
         $data->gambar = $imageName;
         $data->save();
+
+
+        if ($request->has('additional_image')) {
+            ImageAdditionalProduct::where('product_id', $data->id)->delete();
+            foreach ($request->additional_image as $key => $value) {
+                $imageName = time() . $key . '.' . $value->extension();
+                $value->move(public_path('images'), $imageName);
+
+                $dataImage = new ImageAdditionalProduct;
+                $dataImage->product_id = $data->id;
+                $dataImage->gambar = $imageName;
+                $dataImage->save();
+            }
+        }
+
+
 
         foreach ($url as $key => $value) {
             $dataUrl = new ProductUrl();
@@ -97,7 +117,7 @@ class ProductController extends Controller
 
     public function edit($id)
     {
-        $data = Product::with('url')->where('id', $id)->first();
+        $data = Product::with(['url', 'additional_image'])->where('id', $id)->first();
 
         $tag = Tag::all();
         $category = Kategori::all();
@@ -120,6 +140,7 @@ class ProductController extends Controller
             'tag_id' => 'required',
             'harga' => 'required',
             'deskripsi' => 'required',
+            'overview' => 'required',
             'url' => 'required'
         ]);
 
@@ -130,6 +151,7 @@ class ProductController extends Controller
         $data->tag_id = $request->tag_id;
         $data->harga = $request->harga;
         $data->deskripsi = $request->deskripsi;
+        $data->overview = $request->overview;
         if ($request->file('gambar')) {
             $request->validate([
                 'gambar' => 'image|mimes:jpeg,png,jpg,gif,svg|max:4096'
@@ -143,6 +165,19 @@ class ProductController extends Controller
         }
 
         $data->save();
+
+        if ($request->has('additional_image')) {
+            ImageAdditionalProduct::where('product_id', $data->id)->delete();
+            foreach ($request->additional_image as $key => $value) {
+                $imageName = time() . $key . '.' . $value->extension();
+                $value->move(public_path('images'), $imageName);
+
+                $dataImage = new ImageAdditionalProduct;
+                $dataImage->product_id = $data->id;
+                $dataImage->gambar = $imageName;
+                $dataImage->save();
+            }
+        }
 
         $url = json_decode($request->url);
 
