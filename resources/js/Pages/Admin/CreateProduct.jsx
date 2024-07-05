@@ -26,6 +26,7 @@ const CreateProduct = () => {
         deskripsi: page.props.data?.deskripsi ?? "",
         overview: page.props.data?.overview ?? "",
         harga: page.props.data?.harga ?? "",
+        harga: page.props.data?.stok ?? "",
         url: page.props.data?.url
             ? page.props.data?.url.map((item, i) => {
                   return {
@@ -67,6 +68,7 @@ const CreateProduct = () => {
         formData.append("overview", form.overview);
 
         formData.append("harga", form.harga);
+        formData.append("stok", form.stok);
         formData.append("url", JSON.stringify(form.url));
         ConfirmDialog({
             onConfirm: async () => {
@@ -321,6 +323,19 @@ const CreateProduct = () => {
                             type="number"
                             name="harga"
                             value={form.harga}
+                            onChange={handleForm}
+                            id=""
+                        />
+                    </label>
+                    <label>
+                        <p className="text-primary py-2 font-semibold">
+                            Product Stock
+                        </p>
+                        <input
+                            className="bg-gray-200 outline-none w-full px-3 py-2"
+                            type="number"
+                            name="stok"
+                            value={form.stok}
                             onChange={handleForm}
                             id=""
                         />

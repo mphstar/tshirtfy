@@ -7,6 +7,7 @@ import useAdminStore from "../../Store/AdminStore";
 import { Link, router, usePage } from "@inertiajs/react";
 import ConfirmDialog from "../../Utils/ConfirmDialog";
 import Swal from "sweetalert2";
+import formatRupiah from "../../Utils/FormatRupiah";
 
 const Product = () => {
     const store = useAdminStore();
@@ -139,6 +140,9 @@ const Product = () => {
                                     Price
                                 </th>
                                 <th className="text-start py-2 px-3 text-primary">
+                                    Stock
+                                </th>
+                                <th className="text-start py-2 px-3 text-primary">
                                     Tag
                                 </th>
                                 <th className="text-start py-2 px-3 text-primary">
@@ -173,7 +177,10 @@ const Product = () => {
                                         {product.kategori.nama}
                                     </td>
                                     <td className="px-3 py-2">
-                                        {product.harga}
+                                        {formatRupiah(product.harga)}
+                                    </td>
+                                    <td className="px-3 py-2">
+                                        {product.stok}
                                     </td>
                                     <td className="px-3 py-2">
                                         {product.tag.nama}

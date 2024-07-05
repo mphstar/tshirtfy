@@ -62,6 +62,7 @@ class ProductController extends Controller
             'kategori_id' => 'required',
             'tag_id' => 'required',
             'harga' => 'required',
+            'stok' => 'required|numeric',
             'deskripsi' => 'required',
             'overview' => 'required',
             'gambar' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:4096',
@@ -80,6 +81,7 @@ class ProductController extends Controller
         $data->kategori_id = $request->kategori_id;
         $data->tag_id = $request->tag_id;
         $data->harga = $request->harga;
+        $data->stok = $request->stok;
         $data->deskripsi = $request->deskripsi;
         $data->overview = $request->overview;
         $data->gambar = $imageName;
@@ -145,6 +147,7 @@ class ProductController extends Controller
             'kategori_id' => 'required',
             'tag_id' => 'required',
             'harga' => 'required',
+            'stok' => 'required|numeric',
             'deskripsi' => 'required',
             'overview' => 'required',
             'url' => 'required'
@@ -156,6 +159,7 @@ class ProductController extends Controller
         $data->kategori_id = $request->kategori_id;
         $data->tag_id = $request->tag_id;
         $data->harga = $request->harga;
+        $data->stok = $request->stok;
         $data->deskripsi = $request->deskripsi;
         $data->overview = $request->overview;
         if ($request->file('gambar')) {

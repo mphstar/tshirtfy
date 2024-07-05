@@ -19,6 +19,7 @@ class ProductFactory extends Factory
         return [
             'nama' => $this->faker->name,
             'harga' => $this->faker->numberBetween(10000, 100000),
+            'stok' => $this->faker->numberBetween(1, 100),
             'deskripsi' => $this->faker->text,
             'overview' => $this->faker->text,
             'gambar' => '1719057780.png',
