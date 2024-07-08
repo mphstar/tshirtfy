@@ -26,7 +26,7 @@ const CreateProduct = () => {
         deskripsi: page.props.data?.deskripsi ?? "",
         overview: page.props.data?.overview ?? "",
         harga: page.props.data?.harga ?? "",
-        harga: page.props.data?.stok ?? "",
+        stok: page.props.data?.stok ?? "",
         url: page.props.data?.url
             ? page.props.data?.url.map((item, i) => {
                   return {

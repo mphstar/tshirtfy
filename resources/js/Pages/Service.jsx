@@ -13,8 +13,21 @@ const Service = () => {
 
     return (
         <HomeLayout>
-            <div className="flex flex-col container px-4 max-w-[1000px] mx-auto py-6">
-                <div className="flex flex-row mb-6">
+            <div
+                data-aos="fade-in"
+                data-aos-delay="200"
+                data-aos-duration="1000"
+                className="flex flex-col container px-4 max-w-[1000px] mx-auto py-6"
+            >
+                <img
+                    className="h-[400px]"
+                    src="/assets/images/construction.svg"
+                    alt="Maintenance"
+                />
+                <p className="text-center font-semibold">
+                    Sedang dalam perbaikan
+                </p>
+                {/* <div className="flex flex-row mb-6">
                     <div className="flex flex-col">
                         <p
                             className="text-xl font-semibold"
@@ -41,7 +54,7 @@ const Service = () => {
                     <CardService img={"/assets/images/service.png"} />
                     <CardService img={"/assets/images/service.png"} />
                     <CardService img={"/assets/images/service.png"} />
-                </div>
+                </div> */}
             </div>
         </HomeLayout>
     );

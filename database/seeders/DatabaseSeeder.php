@@ -79,6 +79,6 @@ class DatabaseSeeder extends Seeder
             'nama' => 'Slippers'
         ]);
 
-        Product::factory(100)->create();
+        Product::factory(10)->create();
     }
 }

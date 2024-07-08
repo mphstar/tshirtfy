@@ -2,21 +2,32 @@ import React, { useEffect } from "react";
 import HomeLayout from "../Layouts/HomeLayout";
 import useHomeStore from "../Store/HomeStore";
 
-
 const Artikel = () => {
     const store = useHomeStore();
 
     useEffect(() => {
         store.setPage("artikel");
 
-        return () => {
-        };
+        return () => {};
     }, []);
 
     return (
         <HomeLayout>
-            <div className="flex flex-col container px-4 max-w-[1000px] mx-auto py-6">
-                <div className="flex flex-row mb-6">
+            <div
+                data-aos="fade-in"
+                data-aos-delay="200"
+                data-aos-duration="1000"
+                className="flex flex-col container px-4 max-w-[1000px] mx-auto py-6"
+            >
+                <img
+                    className="h-[400px]"
+                    src="/assets/images/construction.svg"
+                    alt="Maintenance"
+                />
+                <p className="text-center font-semibold">
+                    Sedang dalam perbaikan
+                </p>
+                {/* <div className="flex flex-row mb-6">
                     <div className="flex flex-col">
                         <p
                             className="text-xl font-semibold"
@@ -40,7 +51,7 @@ const Artikel = () => {
                     <CardArtikel img={"/assets/images/artikel.png"} />
                     <CardArtikel img={"/assets/images/artikel.png"} />
                     <CardArtikel img={"/assets/images/artikel.png"} />
-                </div>
+                </div> */}
             </div>
         </HomeLayout>
     );
